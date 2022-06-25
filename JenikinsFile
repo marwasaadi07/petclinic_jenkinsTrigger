@@ -1,17 +1,18 @@
-pipeline{
-    agent any
-    stages{
-      
-        stage("Build with maven"){
-            steps{
-                sh 'mvn clean package'
+pipeline {
+	agent any
+
+	stages {
+
+		stage("Build") {
+			steps {
+				sh 'mvn clean package'
+			}
+		}
+
+		stage("save Artifact") {
+			steps {
+                archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
             }
-        }
-        stage("Save Artifacts"){
-            steps{
-              archiveArtifacts artifacts: '**/*.jar', followSymlinks: false
-            }
-            
-        }
-    }
+		}
+	}
 }
