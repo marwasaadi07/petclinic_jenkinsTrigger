@@ -9,6 +9,7 @@ pipeline {
 			}
 		}
 
+
 		stage("save Artifact") {
 			steps {
                 archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
